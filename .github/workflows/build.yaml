@@ -13,7 +13,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
+      - name: Create local certs directory and save Nexus CA
+        run: |
+          mkdir -p .github/certs/your-nexus-domain.com
+          cat << 'EOF' > .github/certs/your-nexus-domain.com/ca.crt
+          -----BEGIN CERTIFICATE-----
+          PASTE_YOUR_ACTUAL_NEXUS_CA_CERTIFICATE_HERE
+          -----END CERTIFICATE-----
+          EOF  
       - name: Create BuildKit config
         run: |
           mkdir -p .github
