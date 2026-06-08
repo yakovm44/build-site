@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: ping 
-        run: echo "Pinging Nexus at"
+        run: ping -c 192.168.68.101
 
 
       - name: Test Nexus connectivity
