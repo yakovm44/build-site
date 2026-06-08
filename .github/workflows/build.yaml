@@ -30,5 +30,5 @@ jobs:
           context: .
           push: ${{ github.ref == 'refs/heads/main' }}   # only push on main
           tags: |
-            ${{ secrets.NEXUS_URL }}/your-repo-name/your-image:latest
-            ${{ secrets.NEXUS_URL }}/your-repo-name/your-image:${{ github.sha }}
+            ${{ secrets.NEXUS_URL }}/dummysite:latest
+            ${{ secrets.NEXUS_URL }}/dummysite:${{ github.sha }}
