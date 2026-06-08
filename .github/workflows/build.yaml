@@ -21,9 +21,9 @@ jobs:
           username: ${{ secrets.NEXUS_USERNAME }}
           password: ${{ secrets.NEXUS_PASSWORD }}
 
-      - name: Configure insecure registry
-        run: |
-          sudo echo '{"insecure-registries": ["${{ secrets.NEXUS_REPO_URL }}"]}' > /etc/docker/daemon.json
+      # - name: Configure insecure registry
+      #   run: |
+      #     sudo echo '{"insecure-registries": ["${{ secrets.NEXUS_REPO_URL }}"]}' > /etc/docker/daemon.json
    
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
