@@ -36,9 +36,9 @@ jobs:
         id: docker-build
         uses: docker/build-push-action@v6
         with:
-        context: .
-        push: true
-        tags: ${{ secrets.NEXUS_REPO_URL }}/dummysite:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
+          context: .
+          push: true
+          tags: ${{ secrets.NEXUS_REPO_URL }}/dummysite:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
         
