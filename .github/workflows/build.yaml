@@ -17,7 +17,7 @@ jobs:
       - name: Log in to Nexus Docker Registry
         uses: docker/login-action@v3
         with:
-          registry: "http://192.168.68.101:8082"
+          registry: ${{ secrets.NEXUS_REPO_URL }}
           username: ${{ secrets.NEXUS_USERNAME }}
           password: ${{ secrets.NEXUS_PASSWORD }}
 
@@ -42,7 +42,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: http://192.168.68.101:8082/build-site:latest
+          tags: ${{ secrets.NEXUS_REPO_URL }}/dummysite:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
         
