@@ -14,6 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Test Nexus connectivity
+        run: |
+           curl -v --max-time 10 https://${{ secrets.NEXUS_REPO_URL }}/v2/ || true
+           nc -zv $(echo ${{ secrets.NEXUS_REPO_URL }} | cut -d: -f1) \
+           $(echo ${{ secrets.NEXUS_REPO_URL }} | cut -d: -f2) || true
+
+
+
       - name: Log in to Nexus Docker Registry
         uses: docker/login-action@v3
         with:
