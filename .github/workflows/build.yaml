@@ -16,7 +16,7 @@ jobs:
 
       - name: Test Nexus connectivity
         run: |
-           curl -v --max-time 10 https://${{ secrets.NEXUS_REPO_URL }}/v2/ || true
+           curl -v --max-time 10 http://${{ secrets.NEXUS_REPO_URL }}/v2/ || true
            nc -zv $(echo ${{ secrets.NEXUS_REPO_URL }} | cut -d: -f1) \
            $(echo ${{ secrets.NEXUS_REPO_URL }} | cut -d: -f2) || true
 
