@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: ping 
-        uses: ping 192.168.68.101
+        run: ping 192.168.68.101
 
-        
+
       - name: Test Nexus connectivity
         run: |
            curl -v --max-time 10 192.168.68.101:8082/v2/ || true
