@@ -1,5 +1,12 @@
-FROM: nginx:alpine
+FROM python:3.11-slim
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+WORKDIR /app
 
-EXPOSE 80
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY dummy_site/app.py .
+
+EXPOSE 5000
+
+CMD ["python", "-m", "flask", "run", "--host=0.0.0.0", "--port=5000"]
