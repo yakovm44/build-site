@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: dummysite
   labels:
-    app: dummysite
+    app: build-site-web
 spec:
   type: NodePort
   selector:
-    app: dummysite
+    app: build-site-web
   ports:
     - protocol: TCP
       port: 80
