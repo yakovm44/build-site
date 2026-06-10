@@ -1,46 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dummysite
+  name: build-site-web
+  namespace: app1
   labels:
-    app: dummysite
+    app: build-site-web
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dummysite
+      app: build-site-web
   template:
     metadata:
       labels:
-        app: dummysite
+        app: build-site-web
     spec:
-      containers:
-        - name: dummysite
-          image: 192.168.68.101:8082/dummysite:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 5000
-          env:
-            - name: FLASK_ENV
-              value: "production"
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "250m"
-              memory: "256Mi"
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 5000
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 5000
-            initialDelaySeconds: 10
-            periodSeconds: 20
       imagePullSecrets:
-        - name: nexus-secret    
+        - name: nexus-proxy-secret        # ← the secret you created in Step 3
+      containers:
+        - name: build-site-web
+          image: 127.0.0.1:5000/dummysite:latest
+          imagePullPolicy: Always   # ← always pull fresh from Nexus
+          ports:
+            - containerPort: 80     # ← change to your app's port
