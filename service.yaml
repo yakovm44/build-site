@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dummysite
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: dummysite
   ports:
